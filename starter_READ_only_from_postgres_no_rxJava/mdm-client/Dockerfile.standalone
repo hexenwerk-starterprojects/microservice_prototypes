@@ -1,0 +1,33 @@
+FROM adoptopenjdk:11-hotspot-bionic
+RUN apt-get update
+
+# packages for successfull running of Jpro service (see Jpro home page documentation)
+RUN apt-get -y install xorg gtk2-engines libasound2 libgtk2.0-0
+RUN apt-get -y install unzip
+
+WORKDIR /temp
+
+# Instal Maven
+RUN curl -s https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.4/apache-maven-3.5.4-bin.zip --output maven.zip &&\
+    unzip maven.zip && mv apache-maven* maven && rm -f maven.zip
+ENV PATH="/temp/maven/bin:${PATH}"
+
+# copy source code from host machine into image's temp folder
+COPY . /temp/
+
+# build and assemble JPRO with the application
+RUN rm -r target &&\
+    mkdir m2 &&\
+    mvn -Dmaven.repo.local=/temp/m2 clean jpro:release &&\
+    unzip target/mdm-client.zip &&\
+    rm -r target/mdm-client.zip &&\
+    rm -f ./mdm-client/libs/mdm-client-1.0.0-SNAPSHOT.jar &&\
+    mv target/mdm-client-*.original mdm-client/libs/mdm-client.jar &&\
+    cp start_jpro.sh ./mdm-client/bin/start.sh &&\
+    chmod +x ./mdm-client/bin/start.sh
+
+WORKDIR /app
+RUN mv /temp/mdm-client /app && rm -r /temp
+
+RUN ["sh", "-c", "echo  -Dhttp.port=$PORT"]
+CMD ["sh", "-c", "./mdm-client/bin/start.sh  -Dhttp.port=$PORT"]
