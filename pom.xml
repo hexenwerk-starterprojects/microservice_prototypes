@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.1.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cz.hexenwerk</groupId>
+  <artifactId>microservice_prototypes</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0</version>
+  <name>microservice_prototypes-root</name>
+  <description>Testing of microservices with use of JavaFx UI, which is able to run from web browser.
+    There are many independent projects modules here, but they have few things in common the JavaFx UI and fully
+    enabled dockerization
+  </description>
+
+  <modules>
+    <module>starter_READ_only_from_postgres_no_rxJava</module>
+  </modules>
+
+  <properties>
+    <java.version>11</java.version>
+    <javafx.version>11</javafx.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <jpro.version>2019.2.2</jpro.version>
+    <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
+    <org.projectlombok.version>1.18.12</org.projectlombok.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>2.2.5.RELEASE</version>
+      </dependency>
+
+
+      <dependency>
+        <groupId>net.rgielen</groupId>
+        <artifactId>javafx-weaver-spring-boot-starter</artifactId>
+        <version>1.3.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>${javafx.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-web</artifactId>
+        <version>${javafx.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-swing</artifactId>
+        <version>${javafx.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>${javafx.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-media</artifactId>
+        <version>${javafx.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sandec.jpro</groupId>
+        <artifactId>jpro-webapi</artifactId>
+        <version>${jpro.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+
+    <repository>
+      <id>jpro - sandec repository</id>
+      <url>https://sandec.bintray.com/repo</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </pluginRepository>
+
+    <pluginRepository>
+      <id>jpro - sandec repository</id>
+      <url>https://sandec.bintray.com/repo</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.sandec.jpro</groupId>
+          <artifactId>jpro-maven-plugin</artifactId>
+          <version>${jpro.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

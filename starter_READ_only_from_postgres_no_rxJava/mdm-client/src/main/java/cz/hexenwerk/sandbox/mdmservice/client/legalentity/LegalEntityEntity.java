@@ -1,4 +1,4 @@
-package de.scope.mdm.client.legalentity;
+package cz.hexenwerk.sandbox.mdmservice.client.legalentity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

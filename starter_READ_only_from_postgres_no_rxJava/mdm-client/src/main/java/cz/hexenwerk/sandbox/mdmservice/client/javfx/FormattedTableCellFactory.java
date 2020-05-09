@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package de.scope.mdm.client.javfx;
+package cz.hexenwerk.sandbox.mdmservice.client.javfx;
 
 import java.text.Format;
 import javafx.geometry.Pos;

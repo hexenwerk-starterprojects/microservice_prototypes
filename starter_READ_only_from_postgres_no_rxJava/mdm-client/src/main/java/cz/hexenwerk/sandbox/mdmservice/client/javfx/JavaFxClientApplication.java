@@ -30,9 +30,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package de.scope.mdm.client.javfx;
+package cz.hexenwerk.sandbox.mdmservice.client.javfx;
 
-import de.scope.mdm.client.legalentity.LegalEntityFxmlControllerImpl;
+import cz.hexenwerk.sandbox.mdmservice.client.legalentity.LegalEntityFxmlControllerImpl;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -59,7 +59,7 @@ public class JavaFxClientApplication extends Application {
     }
 
     this.applicationContext = new SpringApplicationBuilder()
-        .sources(de.scope.mdm.client.Application.class)
+        .sources(cz.hexenwerk.sandbox.mdmservice.client.Application.class)
         .run(args);
   }
 

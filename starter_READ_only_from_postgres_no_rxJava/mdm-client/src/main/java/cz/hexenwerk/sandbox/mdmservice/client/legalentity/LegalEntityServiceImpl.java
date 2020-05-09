@@ -1,6 +1,6 @@
-package de.scope.mdm.client.legalentity;
+package cz.hexenwerk.sandbox.mdmservice.client.legalentity;
 
-import de.scope.mdm.client.response.ResponseListDto;
+import cz.hexenwerk.sandbox.mdmservice.client.response.ResponseListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
@@ -11,15 +11,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class LegalEntityServiceImpl implements LegalEntityService
-{
+public class LegalEntityServiceImpl implements LegalEntityService {
 
     private final LegalEntityRepository repository;
 
     private final LegalEntityMapper mapper;
 
-    static Example<LegalEntityEntity> buildQueryExample(Integer categoryId, String name)
-    {
+    static Example<LegalEntityEntity> buildQueryExample(Integer categoryId, String name) {
         LegalEntityEntity entity = new LegalEntityEntity();
         entity.setCategoryId(categoryId);
         entity.setName(name);
@@ -33,8 +31,7 @@ public class LegalEntityServiceImpl implements LegalEntityService
     }
 
     @Override
-    public ResponseListDto<LegalEntityDto> getLegalEntitiesByCriterias(Integer pageId, Integer size, Integer categoryId, String name)
-    {
+    public ResponseListDto<LegalEntityDto> getLegalEntitiesByCriterias(Integer pageId, Integer size, Integer categoryId, String name) {
         Example<LegalEntityEntity> legalEntityEntityExample = buildQueryExample(categoryId, name);
         Pageable pageable = PageRequest.of(pageId, size, Sort.by("name").ascending());
         Page<LegalEntityEntity> legalEntityEntityPage = repository.findAll(legalEntityEntityExample, pageable);
