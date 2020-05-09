@@ -1,6 +1,6 @@
-package de.scope.mdm.client.legalentity;
+package cz.hexenwerk.sandbox.mdmservice.client.legalentity;
 
-import de.scope.mdm.client.response.ResponseListDto;
+import cz.hexenwerk.sandbox.mdmservice.client.response.ResponseListDto;
 
 public interface LegalEntityService
 {

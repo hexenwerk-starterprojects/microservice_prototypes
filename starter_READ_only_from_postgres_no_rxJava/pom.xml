@@ -1,22 +1,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
-    <groupId>com.scope.servicestack</groupId>
-    <artifactId>Scope_service_stack</artifactId>
-    <packaging>pom</packaging>
+  <parent>
+    <groupId>cz.hexenwerk</groupId>
+    <artifactId>microservice_prototypes</artifactId>
     <version>1.0</version>
-    <name>CRUD communication between dockerized JavaFx client and dockerized Postgres DB.</name>
+  </parent>
 
-    <modules>
-        <module>mdm-client</module>
-    </modules>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cz.hexenwerk.sandbox</groupId>
+  <artifactId>starter_READ_only_from_postgres_no_rxJava</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0</version>
+  <name>starter_READ_only_from_postgres_no_rxJava</name>
+
+  <modules>
+    <module>mdm-client</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <artifactId>lombok</artifactId>
+        <groupId>org.projectlombok</groupId>
+        <optional>true</optional>
+        <version>${org.projectlombok.version}</version>
+      </dependency>
+
+      <dependency>
+        <artifactId>mapstruct</artifactId>
+        <groupId>org.mapstruct</groupId>
+        <version>${org.mapstruct.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.2.12</version>
+        <scope>runtime</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

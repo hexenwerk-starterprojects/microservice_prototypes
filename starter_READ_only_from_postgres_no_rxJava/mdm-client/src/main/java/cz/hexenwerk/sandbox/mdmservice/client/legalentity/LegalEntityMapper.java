@@ -1,4 +1,4 @@
-package de.scope.mdm.client.legalentity;
+package cz.hexenwerk.sandbox.mdmservice.client.legalentity;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

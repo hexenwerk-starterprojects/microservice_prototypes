@@ -1,4 +1,4 @@
-package de.scope.mdm.client.response;
+package cz.hexenwerk.sandbox.mdmservice.client.response;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

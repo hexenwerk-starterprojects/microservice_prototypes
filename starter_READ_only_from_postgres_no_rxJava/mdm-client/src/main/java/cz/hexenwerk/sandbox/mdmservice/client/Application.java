@@ -1,6 +1,6 @@
-package de.scope.mdm.client;
+package cz.hexenwerk.sandbox.mdmservice.client;
 
-import de.scope.mdm.client.javfx.JavaFxClientApplication;
+import cz.hexenwerk.sandbox.mdmservice.client.javfx.JavaFxClientApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 

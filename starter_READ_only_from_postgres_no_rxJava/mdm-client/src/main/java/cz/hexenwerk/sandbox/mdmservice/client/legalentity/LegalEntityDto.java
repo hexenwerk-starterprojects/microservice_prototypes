@@ -1,4 +1,4 @@
-package de.scope.mdm.client.legalentity;
+package cz.hexenwerk.sandbox.mdmservice.client.legalentity;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
