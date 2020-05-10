@@ -22,6 +22,7 @@
 
   <modules>
     <module>starter_READ_only_from_postgres_no_rxJava</module>
+    <module>starter_CRUD_with_DB</module>
   </modules>
 
   <properties>
@@ -32,6 +33,8 @@
     <jpro.version>2019.2.2</jpro.version>
     <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
     <org.projectlombok.version>1.18.12</org.projectlombok.version>
+    <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+    <javafx-weaver.version>1.3.0</javafx-weaver.version>
   </properties>
 
   <dependencyManagement>
@@ -42,56 +45,49 @@
         <groupId>org.springframework.boot</groupId>
         <scope>import</scope>
         <type>pom</type>
-        <version>2.2.5.RELEASE</version>
+        <version>${spring-boot.version}</version>
       </dependency>
-
 
       <dependency>
         <groupId>net.rgielen</groupId>
         <artifactId>javafx-weaver-spring-boot-starter</artifactId>
-        <version>1.3.0</version>
+        <version>${javafx-weaver.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-controls</artifactId>
         <version>${javafx.version}</version>
-        <scope>compile</scope>
       </dependency>
 
       <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-web</artifactId>
         <version>${javafx.version}</version>
-        <scope>compile</scope>
       </dependency>
 
       <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-swing</artifactId>
         <version>${javafx.version}</version>
-        <scope>compile</scope>
       </dependency>
 
       <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
         <version>${javafx.version}</version>
-        <scope>compile</scope>
       </dependency>
 
       <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-media</artifactId>
         <version>${javafx.version}</version>
-        <scope>compile</scope>
       </dependency>
 
       <dependency>
         <groupId>com.sandec.jpro</groupId>
         <artifactId>jpro-webapi</artifactId>
         <version>${jpro.version}</version>
-        <scope>compile</scope>
       </dependency>
 
     </dependencies>
