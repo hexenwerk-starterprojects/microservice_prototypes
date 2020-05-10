@@ -83,7 +83,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <classifier>executable-jar</classifier>
-                    <mainClass>com.codetreatise.MainApp</mainClass>
+                    <mainClass>cz.hexenwerk.sandbox.microservice.crud.MainApp</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -124,7 +124,7 @@
                     <visible>false</visible>
                     <JVMArgs>-Xmx300m</JVMArgs>
                     <port>8081</port>
-                    <mainClassName>com.codetreatise.SpringbootJavaFxApplication</mainClassName>
+                    <mainClassName>cz.hexenwerk.sandbox.microservice.crud.SpringbootJavaFxApplication</mainClassName>
                     <openingPath>/</openingPath>
                 </configuration>
             </plugin>

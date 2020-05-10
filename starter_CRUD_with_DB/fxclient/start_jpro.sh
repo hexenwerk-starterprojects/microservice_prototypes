@@ -13,6 +13,6 @@ fi
 
 CLASSPATH=$(JARS=("$(pwd)/libs"/*.jar "$(pwd)/jfx/$PLATFORM/"*.jar); IFS=:; echo "${JARS[*]}")
 JPROCLASSPATH=$(JARS=("$(pwd)/jprolibs"/*.jar); IFS=:; echo "${JARS[*]}")
-JPRO_ARGS=("-Xmx1000m" "-Djpro.applications.default=com.codetreatise.SpringbootJavaFxApplication" "-Dprism.useFontConfig=false" "-Djpro .forceShutdown=true" "-Dhttp.port=80" "-Dquantum.norenderjobs=true" "-Dglass.platform=Monocle" "-Dmonocle.platform=Headless" "-Dprism.fontdir=fonts/" "-Djpro .deployment=MAVEN-Distribution")
+JPRO_ARGS=("-Xmx1000m" "-Djpro.applications.default=cz.hexenwerk.sandbox.microservice.crud.SpringbootJavaFxApplication" "-Dprism.useFontConfig=false" "-Djpro .forceShutdown=true" "-Dhttp.port=80" "-Dquantum.norenderjobs=true" "-Dglass.platform=Monocle" "-Dmonocle.platform=Headless" "-Dprism.fontdir=fonts/" "-Djpro .deployment=MAVEN-Distribution")
 
 java "${JPRO_ARGS[@]}" "-Djprocp=$JPROCLASSPATH" "$@" -cp "$CLASSPATH"  com.jpro.boot.JProBoot
