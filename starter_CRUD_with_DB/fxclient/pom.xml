@@ -56,12 +56,34 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.build.sourceDirectory}</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>${project.build.testSourceDirectory}</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <classifier>executable-jar</classifier>
-                    <mainClass>cz.hexenwerk.sandbox.mdmservice.client.Application</mainClass>
+                    <mainClass>com.codetreatise.MainApp</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -102,7 +124,7 @@
                     <visible>false</visible>
                     <JVMArgs>-Xmx300m</JVMArgs>
                     <port>8081</port>
-                    <mainClassName>cz.hexenwerk.sandbox.mdmservice.client.javfx.JavaFxClientApplication</mainClassName>
+                    <mainClassName>com.codetreatise.SpringbootJavaFxApplication</mainClassName>
                     <openingPath>/</openingPath>
                 </configuration>
             </plugin>
