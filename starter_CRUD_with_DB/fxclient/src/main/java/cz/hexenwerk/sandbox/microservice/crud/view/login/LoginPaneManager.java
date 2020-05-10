@@ -4,6 +4,7 @@ import cz.hexenwerk.sandbox.microservice.crud.view.main.MainPane;
 import cz.hexenwerk.sandbox.microservice.crud.view.StageManager;
 import cz.hexenwerk.sandbox.microservice.crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

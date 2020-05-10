@@ -1,4 +1,4 @@
-create table users
+create table if not exists users
 (
     id         bigint not null
         constraint users_pkey
@@ -11,10 +11,3 @@ create table users
     password   varchar(255),
     role       varchar(255)
 );
-
-alter table users
-    owner to "crud-users-postgres-user";
-
-
-INSERT INTO public.users (id, dob, email, first_name, gender, last_name, password, role)
-VALUES (1, '1979-03-23', 'admin@admin.cz', 'Jan', 'Male', 'Kotek', 'test12', 'Admin');
