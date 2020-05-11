@@ -4,8 +4,10 @@ import cz.hexenwerk.sandbox.microservice.crud.model.User;
 import cz.hexenwerk.sandbox.microservice.crud.view.StageManager;
 import cz.hexenwerk.sandbox.microservice.crud.view.login.LoginPane;
 import cz.hexenwerk.sandbox.microservice.crud.view.main.left.UserDetailPaneManager;
+import io.reactivex.rxjavafx.observables.JavaFxObservable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -13,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +29,8 @@ import java.util.ResourceBundle;
 
 @Controller
 @FxmlView
-public class UserListPane implements Initializable
-{
+public class UserListPane implements Initializable {
+
     @Lazy
     @Autowired
     private StageManager stageManager;
@@ -38,6 +42,9 @@ public class UserListPane implements Initializable
     private UserDetailPaneManager userDetailPaneManager;
 
     final ObservableList<User> userList = FXCollections.observableArrayList();
+
+    @FXML
+    public Button btnRefresh;
 
     @FXML
     Button btnLogout;
@@ -67,9 +74,17 @@ public class UserListPane implements Initializable
     private MenuItem deleteUsers;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
+    public void initialize(URL location, ResourceBundle resources) {
         userTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // refresh table content if CTRL+R is pressed
+        JavaFxObservable.actionEventsOf(btnRefresh)
+                .subscribe(userListPaneManager.getRefreshRequests());
+
+        JavaFxObservable.eventsOf(userTable, KeyEvent.KEY_PRESSED)
+                .filter(ke -> ke.isControlDown() && ke.getCode().equals(KeyCode.R))
+                .map(ke -> new ActionEvent())
+                .subscribe(userListPaneManager.getRefreshRequests());
 
         // set column properties
         colUserId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -90,26 +105,20 @@ public class UserListPane implements Initializable
         // set layout
     }
 
-    private class TableColumnTableCellCallback implements Callback<TableColumn<User, Boolean>, TableCell<User, Boolean>>
-    {
+    private class TableColumnTableCellCallback implements Callback<TableColumn<User, Boolean>, TableCell<User, Boolean>> {
         @Override
-        public TableCell<User, Boolean> call(final TableColumn<User, Boolean> param)
-        {
-            return new TableCell<>()
-            {
+        public TableCell<User, Boolean> call(final TableColumn<User, Boolean> param) {
+            return new TableCell<>() {
                 final Image imgEdit = new Image(getClass().getResourceAsStream("/images/edit.png"));
                 final Button btnEdit = new Button();
 
                 @Override
-                public void updateItem(Boolean check, boolean empty)
-                {
+                public void updateItem(Boolean check, boolean empty) {
                     super.updateItem(check, empty);
-                    if (empty)
-                    {
+                    if (empty) {
                         setGraphic(null);
                         setText(null);
-                    } else
-                    {
+                    } else {
                         btnEdit.setOnAction(e -> userDetailPaneManager.refreshUserPane(getTableView().getItems().get(getIndex())));
 
                         btnEdit.setStyle("-fx-background-color: transparent;");
