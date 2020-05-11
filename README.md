@@ -11,3 +11,6 @@
 ## List of projects
 * ### [Simple read-only view of one DB table](starter_READ_only_from_postgres_no_rxJava/Readme.md)
 ![app screenshot](starter_READ_only_from_postgres_no_rxJava/doc/screenshot_app.gif)
+
+* ### [Starter CRUD applicatin with DB](starter_CRUD_application_with_DB/Readme.md)
+![app screenshot](starter_CRUD_application_with_DB/doc/screenshot_app.gif)

@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  crud-users-postgres:
+    container_name: crud-users-postgres
+    build:
+      context: ./postgresdb
+      dockerfile: Dockerfile
+    image: crud-users-postgres:1.0
+    environment:
+      - POSTGRES_DB=crud-users
+      - POSTGRES_USER=crud-users-postgres-user
+      - POSTGRES_PASSWORD=test12
+      - POSTGRES_PORT=5432
+    ports:
+      - 5433:5432
+    volumes:
+      - crud-users-postgres-data:/var/lib/postgresql/data
+
+  crud-users-client:
+    container_name: crud-users-client
+    build:
+      context: ./fxclient
+      dockerfile: Dockerfile
+    image: crud-users-client:1.0
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://crud-users-postgres:5432/crud-users
+      - SPRING_DATASOURCE_USERNAME=crud-users-postgres-user
+      - SPRING_DATASOURCE_PASSWORD=test12
+      - JPRO_SERVER_PORT=80
+    ports:
+      - 8080:80
+    depends_on:
+      - crud-users-postgres
+
+volumes:
+  crud-users-postgres-data:
